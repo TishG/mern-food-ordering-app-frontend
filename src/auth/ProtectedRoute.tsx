@@ -13,7 +13,11 @@ const ProtectedRoute = () => {
 	}, [isLoading, isAuthenticated]);
 
 	if (isLoading) {
-		return null;
+		return (
+			<div className='h-screen flex justify-center items-center'>
+				Loading...
+			</div>
+		);
 	}
 
 	return isAuthenticated ? <Outlet /> : <Navigate to='/' replace />;
