@@ -1,5 +1,3 @@
-//TODO - rename onSave to onSubmit, rename onSubmit to onHandleSubmit
-
 import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -51,11 +49,11 @@ type RestaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
 	restaurant?: Restaurant;
-	onSave: (restaurantFormData: FormData) => void;
+	onSubmit: (restaurantFormData: FormData) => void;
 	isLoading: boolean;
 };
 
-const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
+const ManageRestaurantForm = ({ onSubmit, isLoading, restaurant }: Props) => {
 	const form = useForm<RestaurantFormData>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -125,7 +123,7 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
 			formData.append('imageFile', formDataJson.imageFile);
 		}
 
-		onSave(formData);
+		onSubmit(formData);
 	};
 
 	return (
