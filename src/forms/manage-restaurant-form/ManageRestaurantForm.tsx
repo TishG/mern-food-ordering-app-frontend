@@ -10,7 +10,6 @@ import ImageSection from './ImageSection';
 import LoadingButton from '@/components/LoadingButton';
 import { Button } from '@/components/ui/button';
 import { Restaurant } from '@/types';
-import { getDollars } from '@/utils';
 
 const formSchema = z
 	.object({
