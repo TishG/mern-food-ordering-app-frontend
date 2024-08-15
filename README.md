@@ -52,6 +52,7 @@ This project leverages a modern tech stack that includes:
 
 - **React**: A JavaScript library for building user interfaces.
 - **CSS**: Styling the application with responsive design in mind.
+  - **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
 - **JavaScript (ES6+)**: Modern JavaScript features for efficient code.
 
 ### Backend
