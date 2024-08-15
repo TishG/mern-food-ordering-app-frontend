@@ -1,3 +1,5 @@
+> This is the Frontend repository. You can visit the Backend repository at https://github.com/TishG/mern-food-ordering-app-backend
+
 # Food Delivery Application
 
 Welcome to the Food Delivery Application! This project is a full-stack web application designed to provide a seamless and intuitive experience for users to order food online.
@@ -5,6 +7,42 @@ Welcome to the Food Delivery Application! This project is a full-stack web appli
 ## 🚀 Live Demo
 
 You can view the live application here: [Food Delivery Application](https://mern-food-ordering-app-frontend-oprw.onrender.com/)
+
+#### Log in
+
+![Log in](./readme-images/MERN%20Food%20Ordering%20App%20Auth0.png)
+
+### Quickly search for a restaurant on the homepage
+
+![Homepage search](./readme-images/Mern%20Food%20Ordering%20App%20Homepage%20Search.jpg)
+
+### Apply filters in your restaurant search
+
+![Filtered Search](./readme-images/MERN%20Food%20Ordering%20App%20Filtered%20Search.png)
+
+### Add items to your order
+
+![Order items](./readme-images/MERN%20Food%20Ordering%20App%20Placing%20Order.png)
+
+### Confirm Order placement
+
+![Confirm order](./readme-images/Mern%20Food%20Ordering%20App%20Confirm%20Delivery%20Details.png)
+
+### Checkout in Stripe
+
+![Stripe checkout](./readme-images/MERN%20Food%20Ordering%20App%20Stripe.png)
+
+### View Orders
+
+![View orders](./readme-images/MERN%20Food%20Ordering%20App%20Orders.png)
+
+### View and update your user profile
+
+![User Profile](./readme-images/Mern%20Food%20Ordering%20App%20User%20Profile.png)
+
+### View and update your restaurant profile
+
+![Restaurant Profile](./readme-images/MERN%20Food%20Ordering%20App%20Manage%20Restaurant.png)
 
 ## 🛠️ Technologies Used
 
@@ -98,11 +136,7 @@ npm start
 
 ## 📦 Back End Installation
 
-View [GitHub Readme](https://github.com/TishG/mern-food-ordering-app-backend) for Back End
-
-### 👥 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+Both the Frontend and Backend must be running in order to view locally. Please visit the [Backend Repo](https://github.com/TishG/mern-food-ordering-app-backend) for instructions.
 
 ### 📄 License
 
