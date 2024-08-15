@@ -101,11 +101,11 @@ npm install
 Create a .env file in the root directory and add the following environment variables:
 
 ```plaintext
-MONGO_URI=your_mongodb_connection_string
-STRIPE_SECRET_KEY=your_stripe_secret_key
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+VITE_API_BASE_URL=your_base_url
+VITE_AUTH0_DOMAIN=your_auth0_domain
+VITE_AUTH0_CLIENT_ID=your_auth0_client
+VITE_AUTH0_CALLBACK_URL=your_auth0_callback
+VITE_AUTH0_AUDIENCE=your_auth0_audience
 ```
 
 ### Running the Application
@@ -115,8 +115,6 @@ To start the application in development mode, use the following command:
 ```bash
 npm run dev
 ```
-
-> This will start both the server and the Stripe webhook listener.
 
 ### Building the Application
 
