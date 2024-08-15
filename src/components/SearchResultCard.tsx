@@ -1,6 +1,8 @@
 import { Restaurant } from '@/types';
+import { getDollars } from '@/utils';
 import { AspectRatio } from '@radix-ui/react-aspect-ratio';
 import { Banknote, Clock, Dot } from 'lucide-react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -8,6 +10,10 @@ type Props = {
 };
 
 const SearchResultsCard = ({ restaurant }: Props) => {
+	const deliveryDollars = useMemo(
+		() => getDollars(restaurant.deliveryPrice),
+		[restaurant.deliveryPrice]
+	);
 	return (
 		<Link
 			to={`/detail/${restaurant._id}`}
@@ -16,7 +22,7 @@ const SearchResultsCard = ({ restaurant }: Props) => {
 			<AspectRatio ratio={16 / 6}>
 				<img
 					src={restaurant.imageUrl}
-					alt=''
+					alt={restaurant.restaurantName}
 					className='rounded-md w-full h-full object-cover'
 				/>
 			</AspectRatio>
@@ -41,7 +47,7 @@ const SearchResultsCard = ({ restaurant }: Props) => {
 						</div>
 						<div className='flex items-center gap-1'>
 							<Banknote />
-							Delivery from ${(restaurant.deliveryPrice / 100).toFixed(2)}
+							Delivery from {deliveryDollars}
 						</div>
 					</div>
 				</div>

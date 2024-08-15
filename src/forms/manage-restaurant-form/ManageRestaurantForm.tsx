@@ -10,6 +10,7 @@ import ImageSection from './ImageSection';
 import LoadingButton from '@/components/LoadingButton';
 import { Button } from '@/components/ui/button';
 import { Restaurant } from '@/types';
+import { getDollars } from '@/utils';
 
 const formSchema = z
 	.object({
@@ -53,6 +54,10 @@ type Props = {
 	isLoading: boolean;
 };
 
+const getFormattedPrice = (price: number): number => {
+	return parseFloat((price / 100).toFixed(2));
+};
+
 const ManageRestaurantForm = ({ onSubmit, isLoading, restaurant }: Props) => {
 	const form = useForm<RestaurantFormData>({
 		resolver: zodResolver(formSchema),
@@ -64,24 +69,16 @@ const ManageRestaurantForm = ({ onSubmit, isLoading, restaurant }: Props) => {
 
 	useEffect(() => {
 		if (!isLoading && restaurant) {
-			const deliveryPriceDollars = restaurant.deliveryPrice / 100;
-			const deliveryPriceTwoDecimals = deliveryPriceDollars.toFixed(2);
-			const deliveryPriceFormatted = parseFloat(deliveryPriceTwoDecimals);
-
 			const menuItemsFormatted = restaurant.menuItems.map((menuItem) => {
-				const menuItemDollars = menuItem.price / 100;
-				const menuItemTwoDecimals = menuItemDollars.toFixed(2);
-				const menuItemPriceFormatted = parseFloat(menuItemTwoDecimals);
-
 				return {
 					...menuItem,
-					price: menuItemPriceFormatted,
+					price: getFormattedPrice(menuItem.price),
 				};
 			});
 
 			const updatedRestaurant = {
 				...restaurant,
-				deliveryPrice: deliveryPriceFormatted,
+				deliveryPrice: getFormattedPrice(restaurant.deliveryPrice),
 				menuItems: menuItemsFormatted,
 			};
 

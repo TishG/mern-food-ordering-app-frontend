@@ -1,10 +1,13 @@
+import { useMemo } from 'react';
+import { Trash } from 'lucide-react';
+
 import { CartItem } from '@/pages/DetailPage';
 import { Restaurant } from '@/types';
+import { getDollars } from '@/utils';
+
 import { CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
-import { useMemo } from 'react';
-import { Trash } from 'lucide-react';
 
 type Props = {
 	restaurant?: Restaurant;
@@ -22,12 +25,12 @@ const getTotalCost = (
 
 	const totalInCents = cartItems.reduce(
 		(currentTotal, cartItem) =>
-			(currentTotal + cartItem.price) * cartItem.quantity,
+			currentTotal + cartItem.price * cartItem.quantity,
 		0
 	);
 	const totalWithDelivery = totalInCents + restaurant.deliveryPrice;
 
-	return (totalWithDelivery / 100).toFixed(2);
+	return getDollars(totalWithDelivery) || 'No Total to show';
 };
 
 const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
@@ -35,13 +38,18 @@ const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
 		() => getTotalCost(cartItems, restaurant),
 		[restaurant, cartItems]
 	);
+	const deliveryCost = useMemo(() => {
+		return restaurant
+			? getDollars(restaurant?.deliveryPrice)
+			: 'No Delivery Price to show';
+	}, [restaurant?.deliveryPrice]);
 
 	return (
 		<>
 			<CardHeader>
 				<CardTitle className='text-2xl font-bold tracking-tight flex justify-between'>
 					<span>Your Order</span>
-					<span>${totalCost}</span>
+					<span>{totalCost}</span>
 				</CardTitle>
 			</CardHeader>
 			<CardContent className='flex flex-col gap-5'>
@@ -54,7 +62,7 @@ const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
 							{item.name}
 						</span>
 						<span className='flex items-center gap-1'>
-							${((item.price * item.quantity) / 100).toFixed(2)}
+							{getDollars(item.price * item.quantity)}
 							<Trash
 								className='cursor-pointer'
 								color='red'
@@ -67,12 +75,7 @@ const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
 				<Separator />
 				<div className='flex justify-between'>
 					<span>Delivery</span>
-					<span>
-						$
-						{restaurant
-							? (restaurant.deliveryPrice / 100).toFixed(2)
-							: 'No Delivery Price to show'}
-					</span>
+					<span>{deliveryCost}</span>
 				</div>
 				<Separator />
 			</CardContent>
